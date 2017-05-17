@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Friends</title>
+    </head>
+    <body>
+        {{ one_friend }}
+        <!-- we can use the line below to see all of our data in our template -->
+        <h1>These are all my friends!</h1>
+        <!-- with all the data we can then construct a more structured output -->
+        <form action='/friends' method='POST'>
+          <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+          <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+          <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+          <input type="submit" value="Add">
+        </form>
+        <form action='/update_friend' method='POST'>
+          <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+          <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+          <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+          <label for="numID">NumID: <input type="text" name="numID" id="numID"></label>
+          <input type="submit" value="Edit">
+        </form>
+        <form action="/remove_friend" method="post">
+            ID: <input type="text" name="numID">
+            <input type="submit" name="removeButton" value="Remove">
+        </form>
+        {% for friend in all_friends: %}
+           <p>ID: {{ friend['id'] }}</p>
+           <p>First Name: {{ friend['first_name'] }}</p>
+           <p>Last Name: {{ friend['last_name'] }}</p>
+           <p>Occupation: {{ friend['occupation'] }}</p>
+           <hr>
+        {% endfor %}
+    </body>
+</html>
